@@ -1,64 +1,15 @@
 
-# Ten (10) Linux Command Lines
+# **Ten (10) Linux Command Lines**
 
 ---
 
 ## 1. rmdir comman
 
-## 10. bc command
 
-The bc command is the calculator of the Command Line Interface.
-
->
->       echo yourCalculation | bc
->
-
-For instance, `echo 14+10 | bc`
-
- ![command line illustration](cmd_line10_bc.png)
-
----
-
-### NOTE:
->
->       **You have to install some of this commands using**
->
->       **sudo apt-get install commandName**
->
-> **...as they may not be preinstalled in your Linux machine.**
->
-
-
-
-## 10. bc command
-
-The bc command is the calculator of the Command Line Interface.
+This is used to delete an empty directory. It can also be used to delete an **empty directory** within another directory.
 
 >
->       echo yourCalculation | bc
->
-
-For instance, `echo 14+10 | bc`
-
- ![command line illustration](cmd_line10_bc.png)
-
----
-
-### NOTE:
->
->       **You have to install some of this commands using**
->
->       **sudo apt-get install commandName**
->
-> **...as they may not be preinstalled in your Linux machine.**
->
-
-
-
-This is used to delete an empty directory. It can also be used to delete an empty directory within another directory.
-
->
->	rmdir [option] nameOfEmptyDir
+>	`rmdir [option] nameOfEmptyDir`
 >
 
 you may also run `rmdir [option] nameOfDir/nameOfEmptyDir`
@@ -72,7 +23,7 @@ you may also run `rmdir [option] nameOfDir/nameOfEmptyDir`
 This means global regular expression print. It is used for word search in a text file.  It returns the specific line containing the word being searched.
 
 >
->	grep wordToBeSearched filename.txt
+>	`grep wordToBeSearched filename.txt`
 >
 
 ![command line illustration](cmd_line2_grep.png)
@@ -84,7 +35,7 @@ This means global regular expression print. It is used for word search in a text
 This is used to display the system's disk space usage in KB, MB or GB and %.
 
 >
->	df [option] filename
+>	`df [option] filename`
 >
 
 ![command line illustration](cmd_line3_df.png)
@@ -96,7 +47,7 @@ This is used to display the system's disk space usage in KB, MB or GB and %.
 Run the du command to find out how much space a specific file or directory occupies.
 
 >
->	du [option] dir/filename.ext | du -h dirName | du -h filename.ext
+>	`du [option] dir/filename.ext | du -h dirName | du -h filename.ext`
 >
 
 ### NOTE: 
@@ -113,7 +64,7 @@ Run the du command to find out how much space a specific file or directory occup
 The diff command compares two files and outputs the differences between both.
 
 >
->	diff [option] file1 file2
+>	`diff [option] file1 file2`
 >
 
 It is mostly used to check the difference between two different versions of a particular source code.
@@ -127,7 +78,7 @@ It is mostly used to check the difference between two different versions of a pa
 Also known as Unix name displays kernel name, system's node hostname and other system info depending on the [option] you run as shown below.
 
 >
->	uname [option]
+>	`uname [option]`
 >
 
 ![command line illustration](cmd_line6_uname.png)
@@ -139,7 +90,7 @@ Also known as Unix name displays kernel name, system's node hostname and other s
 History command outputs the last 500 previously executed commands in your CLI.
 
 >
->	history [option]
+>	`history [option]`
 >
 
  ![command line illustration](cmd_line7_history.png)
@@ -169,7 +120,7 @@ This command is used to display text on the CLI in a sort of poster style.   The
 The bc command is the calculator of the Command Line Interface.
 
 >
->	echo yourCalculation | bc
+>	`echo yourCalculation | bc`
 >
 
 For instance, `echo 14+10 | bc`
@@ -182,7 +133,7 @@ For instance, `echo 14+10 | bc`
 >
 >	**You have to install some of this commands using** 
 >
->       sudo apt-get install commandName
+>        sudo apt-get install commandName
 >
 > **...as they may not be preinstalled in your Linux machine.**
 >
