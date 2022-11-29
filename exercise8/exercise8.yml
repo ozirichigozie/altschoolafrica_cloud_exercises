@@ -1,0 +1,117 @@
+---
+- name: exercise-8 playbook
+  hosts: webservers
+  become: yes
+  remote_user: ubuntu
+  become_method: sudo
+
+  tasks:
+    - name: set time and date
+      shell: timedatectl set-timezone Africa/Lagos
+
+    - name: set hostname
+      shell: hostnamectl set-hostname ec2-3-86-138-248.compute-1.amazonaws.com
+
+    - name: update and upgrade apt
+      shell: apt update -y && apt upgrade -y
+
+    - name: install apache2 and apache2-utils
+      apt:
+        name: 
+          - apache2
+          - apache2-utils
+        state: present
+        update_cache: true
+
+    - name: install packages
+      apt:
+        name: 
+          - python3-pip
+          - apt-transport-https
+          - software-properties-common
+          - gnupg2
+          - lsb-release
+          - ca-certificates
+          - debconf-utils
+          - libaio1
+        state: present
+        update_cache: true
+
+    - name: install php dependencies
+      apt:
+        name:
+          - libapache2-mod-php8.1
+          - php8.1-fpm
+          - php8.1-cli
+          - php8.1-common
+          - php8.1-mysql
+          - php8.1-opcache
+          - php8.1-soap
+          - php8.1-zip
+          - php8.1-intl
+          - php8.1-bcmath
+          - php8.1-xml
+          - php8.1-xmlrpc
+          - php8.1-curl
+          - php8.1-gd
+          - php8.1-imagick
+          - php8.1-dev
+          - php8.1-imap
+          - php8.1-mbstring
+        state: present
+        update_cache: true
+
+    - name: update and upgrade cache
+      apt:
+        update_cache: true
+        upgrade: true
+
+    - name: copy content to index.php file
+      copy:
+        dest: /var/www/index.php
+        content: |
+          <?php
+            date_default_timezone_set('Africa/Lagos');
+            echo date("F d, Y h:i:s A e", time());
+          ?>
+
+    - name: change project owner to root
+      shell: chown -R root:root /var/www/index.php
+    
+    - name: change project file permission
+      shell: chmod -R 0775 /var/www/index.php
+    
+    - name: copy configuration to index.conf
+      copy:
+        dest: "/etc/apache2/sites-available/index.conf"
+        content: |
+          <VirtualHost *:80>
+              ServerAdmin webmaster@localhost
+              ServerName 3.86.138.248
+              ServerAlias 3.86.138.248
+              DocumentRoot /var/www/index.php/public
+              <Directory /var/www/index.php/public>
+                  Options Indexes FollowSymLinks
+                  AllowOverride All
+                  Require all granted
+              </Directory>
+              ErrorLog ${APACHE_LOG_DIR}/error.log
+              CustomLog ${APACHE_LOG_DIR}/access.log combined
+          </VirtualHost>
+    
+    - name: disable default site configuration
+      shell: a2dissite 000-default.conf
+    
+    - name: enable project site configuration
+      shell: a2ensite index.conf
+    
+    - name: enable rewrite mode
+      shell: a2enmod rewrite
+    
+    - name: restart apache
+      service:
+        name: apache2
+        state: restarted
+    
+    - name: change project owner
+      shell: chown -R www-data:www-data /var/www/index.php
